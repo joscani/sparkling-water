@@ -34,7 +34,7 @@ class PipelinePredictionTestSuite extends PipelinePredictionTestBase {
     // Load exported pipeline
     //
     val model_path = getClass.getResource("/sms_pipeline.model")
-    val pipelineModel = PipelineModel.read.load(model_path.getFile)
+    val pipelineModel = PipelineModel.read.load("file://" + model_path.getFile)
 
     //
     // Define input stream
