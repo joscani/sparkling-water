@@ -69,7 +69,7 @@ def getGradleCommand(config) {
 
 def withSharedSetup(sparkMajorVersion, config,  shouldCheckout, code) {
     node('docker') {
-        ws("${env.WORKSPACE}-${env.JOB_NAME}-spark-${sparkMajorVersion}-${config.backendMode}") {
+        ws("${env.WORKSPACE}-spark-${sparkMajorVersion}-${config.backendMode}") {
             config.put("sparkMajorVersion", sparkMajorVersion)
 
             cleanWs()
