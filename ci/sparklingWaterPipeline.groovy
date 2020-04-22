@@ -207,7 +207,7 @@ def prepareSparklingWaterEnvironment() {
                         export BUILD_HADOOP=true
                         export H2O_TARGET=${config.driverHadoopVersion}
                         ./gradlew build -x check -Duser.name=ec2-user
-                        ./gradlew publishToMavenLocal -Dmaven.repo.local=${env.WORKSPACE}/.m2 -Duser.name=ec2-user -Dhttp.socketTimeout=60000 -Dhttp.connectionTimeout=60000
+                        ./gradlew publishToMavenLocal -Dmaven.repo.local=${env.WORKSPACE}/.m2 -Duser.name=ec2-user -Dhttp.socketTimeout=600000 -Dhttp.connectionTimeout=600000
                         ./gradlew :h2o-r:buildPKG -Duser.name=ec2-user
                         cd ..
                     """
