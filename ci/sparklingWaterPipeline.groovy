@@ -77,7 +77,7 @@ def withSharedSetup(sparkMajorVersion, config,  shouldCheckout, code) {
                 checkout scm
                 config.commons = load 'ci/commons.groovy'
             } else {
-                unstash "sw-build-${config.sparkMajorVersion}"
+                unstash "sw-build-${config.sparkMajorVersion}-${config.backendMode}"
             }
 
             config.put("sparkVersion", getSparkVersion(config))
@@ -224,7 +224,7 @@ def buildAndLint() {
             try {
                 sh "${getGradleCommand(config)} clean build -x check spotlessCheck"
                 if (config.uploadNightly.toBoolean()) {
-                    stash "sw-build-${config.sparkMajorVersion}"
+                    stash "sw-build-${config.sparkMajorVersion}-${config.backendMode}"
                 }
             } finally {
                 arch 'assembly/build/reports/dependency-license/**/*'
