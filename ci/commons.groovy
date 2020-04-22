@@ -13,7 +13,7 @@ String getAWSDockerRepo() {
 }
 
 def withAWSDocker(groovy.lang.Closure code) {
-    docker.withRegistry("https://${getAWSDockerRepo()}", 'ecr:us-west-2:AWS S3 Credentials') {
+    docker.withRegistry("https://${getAWSDockerRepo()}", 'ecr:us-west-2:jenkins-full-aws-creds') {
         code()
     }
 }
@@ -111,7 +111,7 @@ def terraformOutput(varName) {
 }
 
 def withAWSCredentials(groovy.lang.Closure code) {
-    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS S3 Credentials', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'jenkins-full-aws-creds', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
         code()
     }
 }
